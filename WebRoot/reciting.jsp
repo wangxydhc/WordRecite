@@ -46,7 +46,11 @@
 			loadXMLDoc(url, myFunction);
 			button.type="hidden"
 		}
+		function showLog(){
+			document.getElementById('youdao').src='show.jsp?wordId='					
+		}
 	</script>
+
 
 
 	<iframe id="youdao" align=right width=800 frameborder=0 height=1200
@@ -66,6 +70,9 @@
 			<s:property value="#list.getWord()" />
 			&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="查字典"
 				onClick="showIFrame('<s:property value="#list.getWord()" />')" /> 
+				
+				<input type="button" value="reciteLog"
+				onClick="showLog('<s:property value="#list.getWord()" />')" /> 
 				<br />
 				<br/>				
 			释义：

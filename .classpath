@@ -27,9 +27,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="D:/MyEclipse 2015/plugins/com.ullink.slack.simpleslack.api_0.4.5.me201510221824/lib/log4j-1.2.17.jar"/>
-	<classpathentry kind="lib" path="D:/MyEclipse 2015/plugins/com.ullink.slack.simpleslack.api_0.4.5.me201510221824/lib/slf4j-api-1.7.12.jar"/>
-	<classpathentry kind="lib" path="D:/MyEclipse 2015/plugins/com.ullink.slack.simpleslack.api_0.4.5.me201510221824/lib/slf4j-log4j12-1.7.12.jar"/>
 	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.struts_2.1">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="WEB-INF/lib"/>
@@ -38,5 +35,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/apache-tomcat-7.0.70/lib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="D:/apache-tomcat-7.0.70/lib/servlet-api.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/slf4j"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

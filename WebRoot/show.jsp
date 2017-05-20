@@ -2,6 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>    
@@ -15,10 +16,27 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
   </head>
+  
+<div id="graph">Loading graph...</div>
+<script src="sources/jscharts.js"></script>
+<script type="text/javascript">
+	
+	var myData = new Array(['2005', 2], ['2006', 1], ['2007', 3], ['2008', 6]);
+	var myChart = new JSChart('graph', 'line');
+	myChart.setDataArray(myData);
+	myChart.setBarColor('#42aBdB');
+	myChart.setBarOpacity(0.8);
+	myChart.setBarBorderColor('#D9EDF7');
+	myChart.setBarValues(false);
+	myChart.setTitleColor('#8C8383');
+	myChart.setAxisColor('#777E81');
+	myChart.setAxisValuesColor('#777E81');
+	myChart.draw();
+	
+</script>
 
-<frameset cols="50%">
-  <frame src="http://www.youdao.com/w/eng/handsome/#keyfrom=dict2.index" />
-</frameset>
+
+
 
 
 </html>
