@@ -31,23 +31,34 @@
 			xmlhttp.open("GET", url, true);
 			xmlhttp.send();
 		}
-		function myFunction() {
+		
+		
+		function myFunction() {   
+		}		
+		function commit(int, handle, button) {
+			for (i = 0; i < handle.length; i++)
+				if (handle[i].name == "radioName" && handle[i].checked == true)
+					v = handle[i].value;
+			url = "ConfirmWord?" + "wordId=" + int + "&handle=" + v;
+			loadXMLDoc(url, myFunction);
+			button.type = "hidden"
+		}	
+		
 			
+		function showLog_at() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				document.getElementById('youdao').src = 'show.jsp';
+			}
 		}
+		function showLog() {
+			url = "DisLog";
+			loadXMLDoc(url, showLog_at);
+		}
+		
+		
 		function showIFrame(s) {
 			document.getElementById('youdao').src = 'http://www.youdao.com/w/eng/'
 					+ s;
-		}
-		function commit(int, handle,button) {			
-			for(i=0;i<handle.length;i++)
-				if(handle[i].name=="radioName"&&handle[i].checked==true)
-					v=handle[i].value;
-			url = "ConfirmWord?" + "wordId=" + int + "&handle=" + v;
-			loadXMLDoc(url, myFunction);
-			button.type="hidden"
-		}
-		function showLog(){
-			document.getElementById('youdao').src='show.jsp?wordId='					
 		}
 	</script>
 
@@ -68,24 +79,23 @@
 			<input type="hidden" name="wordId"
 				value="<s:property value='#list.getId()'/>" /> 单词：
 			<s:property value="#list.getWord()" />
-			&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="查字典"
-				onClick="showIFrame('<s:property value="#list.getWord()" />')" /> 
-				
-				<input type="button" value="reciteLog"
-				onClick="showLog('<s:property value="#list.getWord()" />')" /> 
-				<br />
-				<br/>				
-			释义：
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="button"
+				value="查字典"
+				onClick="showIFrame('<s:property value="#list.getWord()" />')" />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button type=button onClick="showLog()">showLog</button>
+
+			<br /> <br /> 释义：
 			<s:property value="#list.getParaphrase()" />
-			<br />
-			<br/>
-			<s:radio name="radioName" id='#list.getId()' list="#{'1':'完全不会','2':'有点儿印象','3':'基本掌握','4':'太简单了'}" value="" />
+			<br /> <br />
+			<s:radio name="radioName" id='#list.getId()'
+				list="#{'1':'完全不会','2':'有点儿印象','3':'基本掌握','4':'太简单了'}" value="" />
 			<input type="button" value="提交" id="inputHH"
 				onClick="commit('<s:property value="#list.getId()" />',this.parentNode.childNodes,this)" />
 			<br />
-			
+
 		</form>
-		<br/>
+		<br />
 	</s:iterator>
 
 

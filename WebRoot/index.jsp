@@ -20,5 +20,7 @@
 		<s:textfield name="nums" value="" label="本次单词数量" />
 		<s:submit value="提交"/>
 	</s:form>	
+	
+
   </body>
 </html>

@@ -6,7 +6,11 @@
        		<result name="SUCCESS">/reciting.jsp</result>
        	</action>
        <action name="ConfirmWord" class="action.ConfirmWord" method="excute">
-       		<result name="SUCCESS">/show.jsp</result>
+       		<result name="SUCCESS">/show.jsp</result>       		
        	</action>
-   </package>
+  	  <action name="DisLog" class="action.DisLog" method="open">
+       		<result name="SUCCESS">/show.jsp</result>       		
+       	</action>
+   </package>     
+   <constant name="struts.devMode" value="true"  />
 </struts>    
