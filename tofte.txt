@@ -468,7 +468,7 @@ discipline n.纪律disciplined守纪律的undisciplined
 discourage(courage勇气)v.使气馁，阻碍
 discourse(正规的)演讲，文章(upon)
 discreet谨慎的
-disintegratev.使分解，瓦解，碎裂integral完整的
+disintegrate v.使分解，瓦解，碎裂integral完整的
 dispense(pense挂)分发，分配
 disperse(perse点缀)v.分散，传播
 disposal n.处理 dispose v.

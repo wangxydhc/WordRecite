@@ -18,21 +18,24 @@ public class GetBook {
 		before[0] = "";
 		before[1] = "";
 		while (br.ready()) {
-			// before是每次读取上一行后保存的词，因为未确定后面是否还有后续，暂时不存储
+			// before鏄瘡娆¤鍙栦笂涓�鍚庝繚瀛樼殑璇嶏紝鍥犱负鏈‘瀹氬悗闈㈡槸鍚﹁繕鏈夊悗缁紝鏆傛椂涓嶅瓨鍌�
 			String line = br.readLine();
 			before = handleLine(line, before,session);
 		}
-		//最后要把before里的输出来
+		//鏈�悗瑕佹妸before閲岀殑杈撳嚭鏉�
 		session.save(new Word(0,before[0],before[1],"new"));
 		br.close();
 	}
 
 	public static String[] handleLine(String line, String[] before,Session session ) {
 		String[] res = new String[2];
+		System.out.println(line);
 		for (int i = 0; i < line.length(); i++) {
 			if (line.charAt(i) == '.' && line.charAt(i) != '/') {
-				while (line.charAt(i) != ' ')
+				while (i>=0&&line.charAt(i) != ' ')
 					i--;
+				if (i<0)
+					break;
 				res[0] = line.substring(0, i);
 				res[1] = line.substring(i, line.length());
 				handle(res, before,session);
@@ -45,7 +48,7 @@ public class GetBook {
 				return before;
 			}
 		}
-		//如果不符合拆分条件，直接赋值到res
+		//濡傛灉涓嶇鍚堟媶鍒嗘潯浠讹紝鐩存帴璧嬪�鍒皉es
 		res[0] = "";
 		res[1] = line;
 		handle(res, before,session);
@@ -56,17 +59,17 @@ public class GetBook {
 		res[0] = res[0].trim();
 		res[1] = res[1].trim();
 		if (res[0].length() <= 0 || res[1].length() <= 0)
-			if (res[1].length() <= 2 || res[0].length() <= 2) //为单个字母的情况，舍弃				
+			if (res[1].length() <= 2 || res[0].length() <= 2) //涓哄崟涓瓧姣嶇殑鎯呭喌锛岃垗寮�			
 				;
-			 else {//将本行添加到上一个单词的解释后面
+			 else {//灏嗘湰琛屾坊鍔犲埌涓婁竴涓崟璇嶇殑瑙ｉ噴鍚庨潰
 				before[1] = before[1] + " " + res[1];
 			}
 
-		else {//如果本行是另一个单词，输出上一次缓存的单词
+		else {//濡傛灉鏈鏄彟涓�釜鍗曡瘝锛岃緭鍑轰笂涓�缂撳瓨鐨勫崟璇�
 			if (before[0] != "" && before[1] != "") {				
 				session.save(new Word(0,before[0],before[1],"new"));
 			}
-			//更新before
+			//鏇存柊before
 			before[0] = res[0];
 			before[1] = res[1];
 		}

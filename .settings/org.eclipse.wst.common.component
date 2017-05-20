@@ -2,8 +2,8 @@
     <wb-module deploy-name="WordRecite">
         <wb-resource deploy-path="/" source-path="/WebRoot" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/testFolder"/>
         <property name="context-root" value="WordRecite"/>
-        <property name="java-output-path" value="/WordRecite/WebRoot/WEB-INF/classes"/>
+        <property name="java-output-path" value="/WordRecite/bin"/>
     </wb-module>
 </project-modules>

@@ -1,5 +1,5 @@
 #MyEclipse Hibernate Properties
-#Tue May 16 16:39:46 GMT+08:00 2017
+#Sat May 20 11:42:57 GMT+08:00 2017
 genVersionTag=false
 genAnnotations=false
 configFile=/WordRecite/src/hibernate.cfg.xml
@@ -9,7 +9,7 @@ profile=
 detectM2M=false
 genBasicCompId=false
 keyGenerator=
-createConfigFile=true
+createConfigFile=false
 basePersistenceClass=
 detectO2O=false
 useJavaTypes=true
