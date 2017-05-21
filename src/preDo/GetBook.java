@@ -23,13 +23,12 @@ public class GetBook {
 			before = handleLine(line, before,session);
 		}
 		//鏈�悗瑕佹妸before閲岀殑杈撳嚭鏉�
-		session.save(new Word(0,before[0],before[1],"new"));
+		session.save(new Word(before[0],before[1]));
 		br.close();
 	}
 
 	public static String[] handleLine(String line, String[] before,Session session ) {
 		String[] res = new String[2];
-		System.out.println(line);
 		for (int i = 0; i < line.length(); i++) {
 			if (line.charAt(i) == '.' && line.charAt(i) != '/') {
 				while (i>=0&&line.charAt(i) != ' ')
@@ -67,7 +66,7 @@ public class GetBook {
 
 		else {//濡傛灉鏈鏄彟涓�釜鍗曡瘝锛岃緭鍑轰笂涓�缂撳瓨鐨勫崟璇�
 			if (before[0] != "" && before[1] != "") {				
-				session.save(new Word(0,before[0],before[1],"new"));
+				session.save(new Word(before[0],before[1]));
 			}
 			//鏇存柊before
 			before[0] = res[0];

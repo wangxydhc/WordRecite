@@ -1,5 +1,7 @@
 package action;
 
+import handler.DaoHandler;
+
 import java.util.Date;
 
 import model.ReciteLog;
@@ -14,44 +16,34 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 public class ConfirmWord extends ActionSupport{
-	private String handle;
-	private int wordId;
-
-
-
-	public String getHandle() {
+	private int handle;
+	public int getHandle() {
 		return handle;
 	}
-	public void setHandle(String handle) {
+	public void setHandle(int handle) {
 		this.handle = handle;
 	}
+	private int wordId;
 	public int getWordId() {
 		return wordId;
 	}
 	public void setWordId(int wordId) {
 		this.wordId = wordId;		
 	}
-	public String excute(){
-		System.out.println(handle+"&&&&&"+wordId);
-		Factory.beforeclass();
-		Session s = Factory.getSessionFactory().openSession();
-		Transaction tx = s.beginTransaction();
+	public String excute(){	
 		ReciteLog rlg=new ReciteLog();
 		rlg.setDate(new Date());
 		rlg.setStatus(handle);
-		rlg.setWord("no useful");
-		Word word=(Word)s.get(Word.class, wordId);
-		int times=word.getRemTimes()+1;
-		rlg.setTimes(times);
-		word.setRemTimes(times);
-		word.setState(handle);
-		word.getLog().add(rlg);
-		s.save(rlg);
-		s.saveOrUpdate(word);
-		tx.commit();
-		s.close();
+		rlg.setTimes(123);				
+		DaoHandler.link(wordId, rlg);	
 		System.out.println(this.getWordId()+" "+this.getHandle());
 		return "SUCCESS";
 	}
 	
+	public static void main(String[] args) {
+		ConfirmWord d=new ConfirmWord();
+		d.setHandle(2);
+		d.setWordId(45);
+		d.excute();
+	}
 }

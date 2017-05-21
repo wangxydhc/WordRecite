@@ -12,19 +12,29 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 @Entity
 public class Word {
+	private int type;
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
 	private String word;
 	private String paraphrase;
 	private int id;
-	private String state;
-	private int remTimes;
+
 	private Set<ReciteLog> log=new HashSet<ReciteLog>();
 	public Word(){		
 	};
-	public Word(int time,String word,String paraphrase,String state){
+	public Word(String word,String paraphrase){
 		this.word=word;
 		this.paraphrase=paraphrase;
-		this.state=state;
-		this.remTimes=time;
+		this.type=0;
+	}
+	public Word(String word,String paraphrase,int type){
+		this.word=word;
+		this.paraphrase=paraphrase;
+		this.type=type;
 	}
 	@Id
 	@GeneratedValue
@@ -34,18 +44,8 @@ public class Word {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public int getRemTimes() {
-		return remTimes;
-	}
-	public void setRemTimes(int remTimes) {
-		this.remTimes = remTimes;
-		}
+
+
 	public String getParaphrase() {
 		return paraphrase;
 	}

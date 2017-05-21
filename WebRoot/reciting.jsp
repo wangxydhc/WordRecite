@@ -18,28 +18,15 @@
 
 
 <body>
-
+<script src="sources/xml.js"></script>
 	<script>
-		var xmlhttp;
-		function loadXMLDoc(url, cfunc) {
-			if (window.XMLHttpRequest) {// IE7+, Firefox, Chrome, Opera, Safari 代码
-				xmlhttp = new XMLHttpRequest();
-			} else {// IE6, IE5 代码
-				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			xmlhttp.onreadystatechange = cfunc;
-			xmlhttp.open("GET", url, true);
-			xmlhttp.send();
-		}
-		
-		
 		function myFunction() {   
 		}		
-		function commit(int, handle, button) {
+		function commit(int, handle) {
 			for (i = 0; i < handle.length; i++)
 				if (handle[i].name == "radioName" && handle[i].checked == true)
 					v = handle[i].value;
-			url = "ConfirmWord?" + "wordId=" + int + "&handle=" + v;
+			url = "ConfirmWord?" + "wordId=" + int + "&handle=" + v +"&timep="+Math.random();
 			loadXMLDoc(url, myFunction);
 			button.type = "hidden"
 		}	
@@ -89,9 +76,9 @@
 			<s:property value="#list.getParaphrase()" />
 			<br /> <br />
 			<s:radio name="radioName" id='#list.getId()'
-				list="#{'1':'完全不会','2':'有点儿印象','3':'基本掌握','4':'太简单了'}" value="" />
+				list="#{1:'完全不会',2:'有点儿印象',3:'基本掌握',4:'太简单了'}" value="" />
 			<input type="button" value="提交" id="inputHH"
-				onClick="commit('<s:property value="#list.getId()" />',this.parentNode.childNodes,this)" />
+				onClick="commit('<s:property value="#list.getId()" />',this.parentNode.childNodes)" />
 			<br />
 
 		</form>

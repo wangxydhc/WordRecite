@@ -11,6 +11,9 @@
   	  <action name="DisLog" class="action.DisLog" method="open">
        		<result name="SUCCESS">/show.jsp</result>       		
        	</action>
+       	 <action name="AddWordAndLog" class="action.AddWordAndLog" method="excute">
+       		<result name="SUCCESS">/show.jsp</result>       		
+       	</action>
    </package>     
    <constant name="struts.devMode" value="true"  />
 </struts>    

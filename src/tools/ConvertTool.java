@@ -56,7 +56,6 @@ public class ConvertTool {
 		ReciteLog rl=new ReciteLog();
 		rl.setDate(new Date());
 		rl.setId(4);
-		rl.setStatus("ss");
 		rl.setTimes(45);	
 		list.add(rl);}
 		t.ArraytoJ(list, "d://o.json");		

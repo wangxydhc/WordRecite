@@ -1,5 +1,7 @@
 package action;
 
+import handler.DaoHandler;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,13 +32,9 @@ public class DisLog extends ActionSupport{
 		this.wordId = wordId;		
 	}
 	public String open(){
-		System.out.println("&&&&&"+wordId);		
-		Factory.beforeclass();
-		Session s = Factory.getSessionFactory().openSession();
-		Transaction tx = s.beginTransaction();
 		List<JsonModel>list=new ArrayList<JsonModel>();
 		for(int i=0;i<100;i++){		
-		Word word=(Word)s.get(Word.class, wordId+i);		
+		Word word=DaoHandler.getWord(wordId+i);
 		Set<ReciteLog> set=word.getLog();
 		for(ReciteLog rl:set){
 			JsonModel jm=new JsonModel();
@@ -47,10 +45,7 @@ public class DisLog extends ActionSupport{
 			list.add(jm);
 		}		
 		}
-		tx.commit();
-		s.close();
-		ConvertTool convert=new ConvertTool();
-		
+		ConvertTool convert=new ConvertTool();		
 		convert.ArraytoJ(list, "d:/in.json");
 		return "SUCCESS";
 	}

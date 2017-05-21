@@ -1,5 +1,7 @@
 package action;
 
+import handler.DaoHandler;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -30,21 +32,16 @@ public class ShowWords extends ActionSupport{
 	public void setNums(int nums) {
 		this.nums = nums;
 	}
-	public String start() {
-		Factory.beforeclass();
-		Session s = Factory.getSessionFactory().openSession();
-		Transaction tx = s.beginTransaction();
+	public String start() {		
 		Random rd = new Random();
 		int id = rd.nextInt(2000)+1;
 		Word w=new Word();
 		while (nums-- > 0) {		
-			 w= (Word) s.get(Word.class, id);
+			 w=DaoHandler.getWord(id);
 			if (w!=null)
 			res.add(w);
 			id = rd.nextInt(2000);
-		}		
-		tx.commit();
-		s.close();
+		}	
 		return "SUCCESS";
 	}
 

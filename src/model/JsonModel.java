@@ -4,17 +4,17 @@ import java.util.Date;
 
 public class JsonModel {
 	private String unit;
-	private String value;
+	private int value;
 	public String getUnit() {
 		return unit;
 	}
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}
-	public String getValue() {
+	public int getValue() {
 		return value;
 	}
-	public void setValue(String value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 	

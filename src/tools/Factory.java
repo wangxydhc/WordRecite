@@ -8,6 +8,7 @@ private  static SessionFactory sf=null;
 		sf=new AnnotationConfiguration().configure().buildSessionFactory();
 	}
 	public static SessionFactory getSessionFactory(){
+		beforeclass();
 		return sf;
 	}
 }

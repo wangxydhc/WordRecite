@@ -27,7 +27,7 @@ public  class TestClass {
 		this.beforeclass();
 		Session s =this.getSession();
 		Transaction tx=s.beginTransaction();
-		GetBook.run("E://gitHubSource/WordRecite/tofte.txt",s);
+		GetBook.run("d://wordBook.txt",s);
 		tx.commit();
 		s.close();
 	}
