@@ -1,15 +1,15 @@
 package model;
 
-import java.io.Serializable;
+
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 @Entity
 public class Word {
 	private int type;
@@ -58,7 +58,7 @@ public class Word {
 	public void setWord(String word) {
 		this.word = word;
 	}
-	@OneToMany
+	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="log")
 	public Set<ReciteLog> getLog() {
 		return log;

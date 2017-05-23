@@ -2,24 +2,35 @@ package action;
 
 import handler.DaoHandler;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.ReciteLevel;
 import model.Word;
 
+import org.apache.catalina.connector.Request;
+import org.apache.commons.collections.map.LinkedMap;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import tools.Factory;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 
 public class ShowWords extends ActionSupport{	
 
 	private int nums;
-	private List<Word>res=new LinkedList<Word>();
+	private List<Word>res=new ArrayList<Word>();
 	public List<Word> getRes() {
 		return res;
 	}
@@ -33,21 +44,30 @@ public class ShowWords extends ActionSupport{
 		this.nums = nums;
 	}
 	public String start() {		
-		Random rd = new Random();
-		int id = rd.nextInt(2000)+1;
-		Word w=new Word();
-		while (nums-- > 0) {		
-			 w=DaoHandler.getWord(id);
-			if (w!=null)
-			res.add(w);
-			id = rd.nextInt(2000);
-		}	
+		res=DaoHandler.getWordArrays(nums);
+		Map mapForLevel=ReciteLevel.toMap();
+		ActionContext ac=ActionContext.getContext();	
+		Map<String ,Object> session=ac.getSession();
+		HttpServletRequest request=ServletActionContext.getRequest();
+		HttpServletResponse response = ServletActionContext.getResponse();  
+		HttpServletRequest request2=(HttpServletRequest)ac.get(ServletActionContext.HTTP_REQUEST);
+		HttpServletResponse response2=(HttpServletResponse)ac.get(ServletActionContext.HTTP_RESPONSE);		
+		request.setAttribute("fromRequestFromServlet", "fromRequestFromServlet");
+		request2.setAttribute("fromRequestFromContext", "fromRequestFromContext");			
+		session.put("abc", "abc");		
+//		List list=new LinkedList<String>();
+//		list.add("dd");
+//		list.add("df");
+//		session.put("mapFL", list);
+		request.setAttribute("map2", mapForLevel);
+//		System.out.println(mapForLevel);		
 		return "SUCCESS";
 	}
 
-//	public static void main(String[] args) {
-//		ShowWords sw = new ShowWords();
-//		sw.setNums(500);
-//		sw.start();
-//	}
+	public static void main(String[] args) {
+		ShowWords sw = new ShowWords();
+
+		sw.setNums(50);
+		sw.start();
+	}
 }

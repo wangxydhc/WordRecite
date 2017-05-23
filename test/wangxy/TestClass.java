@@ -8,7 +8,7 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import org.junit.Test;
 
-import preDo.GetBook;
+import tools.GetBook;
 
 public  class TestClass {
 	private static SessionFactory sf=null;

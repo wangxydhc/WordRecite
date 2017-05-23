@@ -18,20 +18,20 @@
 
 
 <body>
-<script src="sources/xml.js"></script>
+	<script src="sources/xml.js"></script>
 	<script>
-		function myFunction() {   
-		}		
+		function myFunction() {
+		}
 		function commit(int, handle) {
 			for (i = 0; i < handle.length; i++)
 				if (handle[i].name == "radioName" && handle[i].checked == true)
 					v = handle[i].value;
-			url = "ConfirmWord?" + "wordId=" + int + "&handle=" + v +"&timep="+Math.random();
+			url = "ConfirmWord?" + "wordId=" + int + "&handle=" + v + "&timep="
+					+ Math.random();
 			loadXMLDoc(url, myFunction);
 			button.type = "hidden"
-		}	
-		
-			
+		}
+
 		function showLog_at() {
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 				document.getElementById('youdao').src = 'show.jsp';
@@ -41,8 +41,7 @@
 			url = "DisLog";
 			loadXMLDoc(url, showLog_at);
 		}
-		
-		
+
 		function showIFrame(s) {
 			document.getElementById('youdao').src = 'http://www.youdao.com/w/eng/'
 					+ s;
@@ -60,25 +59,39 @@
 	<br />
 	<br />
 	<br />
+	<form>
+		<s:property value="#request.fromRequestFromServlet" />
+		<br />
+		<s:property value="#session.mapFL" />
+		<br> <input type="text"
+			value=${requestScope.fromRequestFromServlet}></input>
 
-	<s:iterator value="res" id="list">
-		<form name="formname" id='#list.getId()'>
+	</form>
+	<br />
+	<s:property value="%{#session.abc}" />
+	<br />
+
+	<s:iterator value="res" id="list_0">
+		<form name="formname" id='#list_0.getId()'>
 			<input type="hidden" name="wordId"
-				value="<s:property value='#list.getId()'/>" /> 单词：
-			<s:property value="#list.getWord()" />
+				value="<s:property value='#list_0.getId()'/>" /> 单词：
+			<s:property value="#list_0.getWord()" />
+
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="button"
 				value="查字典"
-				onClick="showIFrame('<s:property value="#list.getWord()" />')" />
+				onClick="showIFrame('<s:property value="#list_0.getWord()" />')" />
+
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 			<button type=button onClick="showLog()">showLog</button>
 
 			<br /> <br /> 释义：
-			<s:property value="#list.getParaphrase()" />
+			<s:property value="#list_0.getParaphrase()" />
 			<br /> <br />
-			<s:radio name="radioName" id='#list.getId()'
-				list="#{1:'完全不会',2:'有点儿印象',3:'基本掌握',4:'太简单了'}" value="" />
+
+			<s:radio name="radioName" id='#list_0.getId()' list="#request.map2"	value="" />
 			<input type="button" value="提交" id="inputHH"
-				onClick="commit('<s:property value="#list.getId()" />',this.parentNode.childNodes)" />
+				onClick="commit('<s:property value="#list_0.getId()" />',this.parentNode.childNodes)" />
 			<br />
 
 		</form>
