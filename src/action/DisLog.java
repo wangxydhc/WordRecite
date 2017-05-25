@@ -1,7 +1,5 @@
 package action;
 
-import handler.DaoHandler;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,10 +14,13 @@ import model.Word;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import serviceImp.ManagerImp;
 import tools.ConvertTool;
 import tools.Factory;
 
 import com.opensymphony.xwork2.ActionSupport;
+
+import daoImp.WordDaoImp;
 
 
 public class DisLog extends ActionSupport{
@@ -32,21 +33,7 @@ public class DisLog extends ActionSupport{
 		this.wordId = wordId;		
 	}
 	public String open(){
-		List<JsonModel>list=new ArrayList<JsonModel>();
-		for(int i=0;i<100;i++){		
-		Word word=DaoHandler.getWord(wordId+i);
-		Set<ReciteLog> set=word.getLog();
-		for(ReciteLog rl:set){
-			JsonModel jm=new JsonModel();
-			SimpleDateFormat ft=new SimpleDateFormat("MM月dd日HH时");
-			
-			jm.setUnit(ft.format(rl.getDate()));
-			jm.setValue(rl.getStatus());
-			list.add(jm);
-		}		
-		}
-		ConvertTool convert=new ConvertTool();		
-		convert.ArraytoJ(list, "d:/in.json");
+		new ManagerImp().generateJson(wordId);
 		return "SUCCESS";
 	}
 	public static void main(String[] args) {

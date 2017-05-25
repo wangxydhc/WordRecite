@@ -1,7 +1,5 @@
 package action;
 
-import handler.DaoHandler;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,10 +19,13 @@ import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import serviceImp.ManagerImp;
 import tools.Factory;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+
+import daoImp.WordDaoImp;
 
 
 public class ShowWords extends ActionSupport{	
@@ -44,8 +45,10 @@ public class ShowWords extends ActionSupport{
 		this.nums = nums;
 	}
 	public String start() {		
-		res=DaoHandler.getWordArrays(nums);
+		ManagerImp manager=new ManagerImp();
+		res=manager.getWordArrays(nums);	
 		Map mapForLevel=ReciteLevel.toMap();
+		System.out.println("*****************************");
 		ActionContext ac=ActionContext.getContext();	
 		Map<String ,Object> session=ac.getSession();
 		HttpServletRequest request=ServletActionContext.getRequest();
@@ -66,8 +69,7 @@ public class ShowWords extends ActionSupport{
 
 	public static void main(String[] args) {
 		ShowWords sw = new ShowWords();
-
-		sw.setNums(50);
+		sw.setNums(900);
 		sw.start();
 	}
 }

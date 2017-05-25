@@ -29,6 +29,7 @@ public class ReciteLog {
 	}
 
 	public ReciteLog() {
+		this.setDate(new Date());
 	}
 
 	@Id

@@ -22,7 +22,7 @@
 <script type="text/javascript">	
 	
 	var myChart = new JSChart('graph', 'pie');
-	myChart.setDataJSON('j.json');
+	myChart.setDataJSON('outf.json');
 	myChart.draw();
 	
 </script>

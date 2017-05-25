@@ -65,6 +65,7 @@ public class GetBook {
 			}
 
 		else {//濡傛灉鏈鏄彟涓�釜鍗曡瘝锛岃緭鍑轰笂涓�缂撳瓨鐨勫崟璇�
+			System.out.println(before[0]+" "+before[1]);
 			if (before[0] != "" && before[1] != "") {				
 				session.save(new Word(before[0],before[1]));
 			}

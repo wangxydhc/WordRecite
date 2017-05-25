@@ -12,12 +12,10 @@ public class WriteJson {
 	    }
 	    return s;
 	}
-	public static void  writeBefore() {
+	public static void  writeBefore(String in,String out) {
 		BufferedReader bre = null;
 		OutputStreamWriter pw = null;// 定义一个流
-		String in = "D:/in.json";
 		String line;
-		String out = "d:/out.json";
 		String begin = "{\"JSChart\":{\"datasets\":[{\"type\":\"line\",\"data\":";
 		String end = "}]}}";
 		try {
@@ -37,7 +35,5 @@ public class WriteJson {
 		}
 		;
 	}
-	public static void main(String[] args) {
-		writeBefore();
-	}
+
 }

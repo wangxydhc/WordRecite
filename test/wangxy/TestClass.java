@@ -20,16 +20,23 @@ public  class TestClass {
 		return sf.openSession();
 	}
 	
-	@Test
-	public void testSchemaExport() throws Throwable
+	
+	public static void testSchemaExport() throws Throwable
 	{
 		new SchemaExport(new AnnotationConfiguration().configure()).create(true, true);
-		this.beforeclass();
-		Session s =this.getSession();
+		beforeclass();
+		Session s =getSession();
 		Transaction tx=s.beginTransaction();
-		GetBook.run("d://wordBook.txt",s);
+		GetBook.run("http://kingspace.me:8080/WordRecite/wordBook.txt",s);
 		tx.commit();
 		s.close();
 	}
-
+	public static void main(String[] args) {
+		try {
+			TestClass.testSchemaExport();
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

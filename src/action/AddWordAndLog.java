@@ -1,18 +1,20 @@
 package action;
 
-import handler.DaoHandler;
-
 import java.util.Date;
 
 import model.ReciteLog;
 import model.Word;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import serviceImp.ManagerImp;
 import tools.Factory;
 
 import com.opensymphony.xwork2.ActionSupport;
+
+import daoImp.WordDaoImp;
 
 
 public class AddWordAndLog extends ActionSupport{
@@ -38,18 +40,17 @@ public class AddWordAndLog extends ActionSupport{
 		this.method = method;
 	}
 	public String excute(){	
-		Word w=new Word(this.word,"NONE",1);
-		DaoHandler.saveWord(w);
+		ManagerImp manager=new ManagerImp();		
 		ReciteLog rl=new ReciteLog();
-		rl.setDate(new Date());
 		rl.setMethod(this.getMethod());
 		rl.setStatus(this.getLevel());
 		rl.setUsername("wangxy");
-		DaoHandler.saveLog(rl);
+		manager.saveReciteLog(rl, word);		
 		return "SUCCESS";
 	}
 	public static void main(String[] args) {
 		AddWordAndLog d=new AddWordAndLog();
+		d.word="newWordTsetss";
 		d.excute();		
 	}
 	

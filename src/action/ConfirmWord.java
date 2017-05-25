@@ -1,7 +1,5 @@
 package action;
 
-import handler.DaoHandler;
-
 import java.util.Date;
 
 import model.ReciteLog;
@@ -10,9 +8,12 @@ import model.Word;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import serviceImp.ManagerImp;
 import tools.Factory;
 
 import com.opensymphony.xwork2.ActionSupport;
+
+import daoImp.WordDaoImp;
 
 
 public class ConfirmWord extends ActionSupport{
@@ -31,11 +32,11 @@ public class ConfirmWord extends ActionSupport{
 		this.wordId = wordId;		
 	}
 	public String excute(){	
+		ManagerImp mp=new ManagerImp();
 		ReciteLog rlg=new ReciteLog();
-		rlg.setDate(new Date());
 		rlg.setStatus(handle);
-		rlg.setTimes(123);				
-		DaoHandler.link(wordId, rlg);	
+		rlg.setTimes(123);		
+		mp.addLogToWord(rlg, wordId);
 		System.out.println(this.getWordId()+" "+this.getHandle());
 		return "SUCCESS";
 	}

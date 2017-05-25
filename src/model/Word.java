@@ -1,7 +1,9 @@
 package model;
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -23,7 +25,7 @@ public class Word {
 	private String paraphrase;
 	private int id;
 
-	private Set<ReciteLog> log=new HashSet<ReciteLog>();
+	private List<ReciteLog> log=new ArrayList<ReciteLog>();
 	public Word(){		
 	};
 	public Word(String word,String paraphrase){
@@ -60,10 +62,10 @@ public class Word {
 	}
 	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="log")
-	public Set<ReciteLog> getLog() {
+	public List<ReciteLog> getLog() {
 		return log;
 	}
-	public void setLog(Set<ReciteLog> log) {
+	public void setLog(List<ReciteLog> log) {
 		this.log = log;
 	}
 
