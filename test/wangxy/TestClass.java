@@ -27,7 +27,7 @@ public  class TestClass {
 		beforeclass();
 		Session s =getSession();
 		Transaction tx=s.beginTransaction();
-		GetBook.run("http://kingspace.me:8080/WordRecite/wordBook.txt",s);
+		GetBook.run("http://123.207.162.129:8080/WordRecite/wordBook.txt",s);
 		tx.commit();
 		s.close();
 	}

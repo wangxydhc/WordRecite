@@ -3,6 +3,8 @@ package tools;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 
 import org.hibernate.Session;
 
@@ -11,9 +13,15 @@ import model.Word;
 public class GetBook {
 	public static void run(String s,Session session) throws Throwable {
 		BufferedReader br;
-		FileInputStream fileInStr = new FileInputStream(s);
-		InputStreamReader InSR = new InputStreamReader(fileInStr);
-		br = new BufferedReader(InSR);
+//		FileInputStream fileInStr = new FileInputStream(s);
+//		InputStreamReader InSR = new InputStreamReader(fileInStr);
+//		br = new BufferedReader(InSR);
+			
+			URL realUrl = new URL(s);			
+			URLConnection connection = realUrl.openConnection();			
+			connection.connect();
+			br = new BufferedReader(new InputStreamReader(
+					connection.getInputStream(), "UTF-8"));		
 		String[] before = new String[2];
 		before[0] = "";
 		before[1] = "";
